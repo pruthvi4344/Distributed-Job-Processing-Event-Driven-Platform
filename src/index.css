@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme (default) */
+  --color-canvas: 247 248 250;
+  --color-surface: 255 255 255;
+  --color-surface-raised: 255 255 255;
+  --color-border: 226 229 235;
+  --color-border-subtle: 236 238 242;
+  --color-ink: 20 23 31;
+  --color-ink-muted: 100 108 122;
+  --color-ink-faint: 148 156 168;
+
+  --color-accent: 91 76 245;
+  --color-accent-hover: 74 58 232;
+  --color-accent-ink: 255 255 255;
+  --color-accent-soft: 237 235 254;
+
+  --status-queued: 217 119 6;
+  --status-processing: 37 99 235;
+  --status-succeeded: 5 150 105;
+  --status-failed: 220 38 38;
+  --status-dead_letter: 159 18 57;
+  --status-cancelled: 71 85 105;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"],
+:root:not([data-theme="light"]):is(.dark) {
+  color-scheme: dark;
+}
+
+.dark {
+  --color-canvas: 11 13 18;
+  --color-surface: 18 20 27;
+  --color-surface-raised: 24 27 36;
+  --color-border: 39 43 54;
+  --color-border-subtle: 30 33 43;
+  --color-ink: 236 238 243;
+  --color-ink-muted: 156 163 178;
+  --color-ink-faint: 100 107 122;
+
+  --color-accent: 129 140 248;
+  --color-accent-hover: 154 163 250;
+  --color-accent-ink: 17 19 28;
+  --color-accent-soft: 40 39 71;
+
+  --status-queued: 251 191 36;
+  --status-processing: 96 165 250;
+  --status-succeeded: 52 211 153;
+  --status-failed: 248 113 113;
+  --status-dead_letter: 251 113 133;
+  --status-cancelled: 148 163 184;
+
+  color-scheme: dark;
+}
+
+* {
+  border-color: rgb(var(--color-border));
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: rgb(var(--color-canvas));
+  color: rgb(var(--color-ink));
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+::selection {
+  background-color: rgb(var(--color-accent) / 0.25);
+}
+
+/* Slim, unobtrusive scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(var(--color-border));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(var(--color-ink-faint));
+  background-clip: content-box;
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--color-border-subtle)) 0px,
+    rgb(var(--color-border)) 40px,
+    rgb(var(--color-border-subtle)) 80px
+  );
+  background-size: 600px;
+  animation: shimmer 1.8s linear infinite;
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid rgb(var(--color-accent));
+  outline-offset: 2px;
+  border-radius: 8px;
+}
